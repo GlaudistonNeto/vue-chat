@@ -1,29 +1,31 @@
 <template>
   <div class="container">
-    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
-      <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-        <input class="fs-5 fw-semibold" v-model="username"/>
+    <div class="main-bg">
+        <div class="left">
+          <img src="../assets/GeeksBay-4.jpg" alt="logo" />
+        </div>
+        <div class="right">
+          <nav>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+          </nav>
+        </div>
+      <div class="geek">
+        <h1>GeekCentric</h1>
       </div>
-      <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-        <input class="fs-5 fw-semibold" v-model="postTitle"/>
+      <div class="post-detail">        
+        <form class="submit" @submit.prevent="submit">
+          <input class="post" placeholder="Type your favourite topic..." v-model="message"/>
+        </form>
       </div>
-      <div class="list-group list-group-flush border-bottom scrollarea">
+      <div class="postages list-group list-group-flush border-bottom scrollarea">
         <div class="list-group-item list-group-item-action py-3 lh-tight"
              v-for="message in messages" :key="message"
         >
-          <div class="d-flex w-100 align-items-center justify-content-between">
-            <strong class="mb-1">{{ message.username }}</strong>
-          </div>
-          <div class="d-flex w-100 align-items-center justify-content-between">
-            <strong class="mb-1">{{ message.postTitle }}</strong>
-          </div>
-          <div class="col-10 mb-1 small">{{ message.message }}</div>
+          <div class="post-details col-10 mb-1 small">{{ message.message }}</div>
         </div>
       </div>
     </div>
-    <form @submit.prevent="submit">
-      <input class="form-control" placeholder="Write a message" v-model="message"/>
-    </form>
   </div>
 </template>
 
@@ -34,8 +36,7 @@ import Pusher from 'pusher-js';
 export default {
   name: 'App',
   setup() {
-    const username = ref('username');
-    const postTitle = ref('postTitle');
+    const post = ref('');
     const messages = ref([]);
     const message = ref('');
 
@@ -58,17 +59,16 @@ export default {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          username: username.value,
-          postTitle: postTitle.value,
+          post: post.value,
           message: message.value
         })
       })
       message.value = '';
+      post.value = '';
     }
 
     return {
-      username,
-      postTitle,
+      post,
       messages,
       message,
       submit
@@ -78,7 +78,60 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-color: #330624;
+  padding: 30px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.right {
+  float: right;
+}
+.left {
+  padding-bottom: 25px;
+  float: left
+}
+h1 {
+  color: #fdb924;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.submit {
+  margin-top: 10;
+  width: 100%;
+}
+.logo {
+  margin-left: -900px;
+}
+.post-detail {
+  margin: 1px;
+  flex-direction: row;
+}
+.post-details {
+  background-color: #330624;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 18px;
+  border-bottom: 3px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.postages {
+  padding: 10px;
+  box-sizing: border-box;  
+  color: rgb(88, 88, 88);
+  margin: 0 10px;
+  border-bottom: 3px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: row;
+}
 .scrollarea {
-  min-height: 500px;
+  min-height: 808px;
+  margin: auto;
 }
 </style>
