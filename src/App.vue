@@ -30,7 +30,6 @@ export default {
   name: 'App',
   setup() {
     const username = ref('')
-    const post = ref('');
     const messages = ref([]);
     const message = ref('');
     
@@ -49,7 +48,6 @@ export default {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          post: post.value,
           message: message.value
         })
       })
