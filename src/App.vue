@@ -29,7 +29,7 @@ import Pusher from 'pusher-js';
 export default {
   name: 'App',
   setup() {
-    const username = ref('');
+    const username = ref('')
     const post = ref('');
     const messages = ref([]);
     const message = ref('');
@@ -54,11 +54,9 @@ export default {
         })
       })
       message.value = '';
-      post.value = '';
     }
 
     return {
-      post,
       username,
       messages,
       message,
