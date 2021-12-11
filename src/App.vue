@@ -1,5 +1,21 @@
 <template>
+  <!-- <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-5 fw-semibold">Chat {{ message.topic }}</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+    <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div></ul>
+  </div> -->
 <div class="container">
+    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+    <span class="chat fs-5 fw-semibold">Chat {{ message.topic }}</span>
   <div class="">
       <div class="container d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
           <img src="../assets/GeeksBay-4.jpg" alt="logo">
@@ -12,7 +28,7 @@
         <div class="d-flex w-100 align-items-right justify-content-between">
           <strong class="mb-1">{{ message.username }}</strong>
         </div>
-        <div class="col-10 mb-1 small">{{ message.message }}</div>
+        <div class="col-7 mb-1 small">{{ message.message }}</div>
       </div>
     </div>
   </div>
@@ -68,8 +84,15 @@ export default {
 .container {
   background-color:#330623;
 }
+.chat {
+  margin-left: 40%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-style: oblique;
+  color: #ffff00;
+}
 .scrollarea {
-  min-height: 724px;
+  min-height: 695px;
 }
 .form-container {
   padding-bottom: 10px;
