@@ -3,18 +3,18 @@
     <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
     <span class="chat fs-5 fw-semibold">Chat {{ message.chatTopic }}</span>
   <div class="">
-      <div class="container d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
           <img src="../assets/GeeksBay-4.jpg" alt="logo">
         <input class="fs-6 fw-semibold" placeholder="Your name" v-model="username">
       </div>
-      <div class="container list-group list-group-flush border-bottom scrollarea">
+      <div class="list-group list-group-flush border-bottom scrollarea">
         <div class="list-group-item list-group-item-action py-3 lh-tight"
           v-for="message in messages" :key="message"
         >
         <div class="d-flex w-100 align-items-right justify-content-between">
           <strong class="mb-1">{{ message.username }}</strong>
         </div>
-        <div class="col-7 mb-1 small">{{ message.message }}</div>
+        <div class="col-10 mb-1 small justify-content-right">{{ message.message }}</div>
       </div>
     </div>
   </div>
@@ -51,6 +51,7 @@ export default {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
+          username: username.value,
           message: message.value
         })
       })
@@ -80,7 +81,9 @@ export default {
   color: #ffff00;
 }
 .scrollarea {
-  min-height: 695px;
+  background-color:#330623;
+  min-height: 689px;
+  margin-top: 5px;
 }
 .form-container {
   padding-bottom: 10px;
